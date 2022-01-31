@@ -1,0 +1,23 @@
+# HW 4 ME 456
+# Ryan Melander
+# --------------------
+# Problem 7.1a
+ply = [0, 90, 0, 90, 90, 0, 90, 0]   # ply = [0/90/0/90]s
+# lamina properties
+E1 = 180    # GPa
+E2 = 10
+G12 = 7
+v12 = 0.28
+N = len(ply)
+Ex = [0]*N
+# Ex for all layers
+for i in range(N):
+    if ply[i] == 0:
+        Ex[i] = E1
+    elif ply[i] == 90:
+        Ex[i] = E2
+# Calculate Ef
+Ef = 0
+for i in range(N):
+    Ef = (8/pow(N, 3))*Ex[i]*(pow(i+1, 2)-3*(i+1)+1) + Ef
+print(Ef)
